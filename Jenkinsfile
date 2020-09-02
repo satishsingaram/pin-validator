@@ -1,19 +1,17 @@
 pipeline {
     agent any
     tools {
-            gradle 'myGradle'
+        gradle 'myGradle'
     }
-
+    
     triggers {
-        pollSCM('*/5 * * * *')
+        pollSCM('H * * * *')
     }
 
     stages {
         stage('build pin-validation-service') {
             steps {
-                sh "pwd"
                 dir('pin-validation-service'){
-                    sh "pwd"
                     sh "gradle clean build"
                     junit '**/build/test-results/test/TEST-*.xml'
                 }
@@ -21,9 +19,7 @@ pipeline {
         }
         stage('build error-logger') {
             steps {
-                sh "pwd"
                 dir('error-logger'){
-                    sh "pwd"
                     sh "gradle clean build"
                     junit '**/build/test-results/test/TEST-*.xml'
                 }
@@ -31,15 +27,12 @@ pipeline {
         }
         stage('build par-generator') {
             steps {
-                sh "pwd"
                 dir('par-generator'){
-                    sh "pwd"
                     sh "gradle clean build"
                     junit '**/build/test-results/test/TEST-*.xml'
                 }
             }
         }
-
     }
     post {
         failure {
