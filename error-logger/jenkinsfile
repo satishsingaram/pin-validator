@@ -24,7 +24,11 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh './gradlew build'
+                sh "pwd"
+                dir(error-logger){
+                    sh "pwd"
+                    gradle build
+                }
             }
         }
         stage('Unit Tests') {
