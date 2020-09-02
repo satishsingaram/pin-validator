@@ -10,6 +10,9 @@ pipeline {
 
     stages {
         stage('Compile') {
+            steps { //Checking out the repo
+               checkout
+            }
             steps {
                 sh 'gradle build'
             }
