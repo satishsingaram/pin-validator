@@ -9,25 +9,12 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                sh 'gradle --version'
-                sh 'docker version'
-                echo "Build"
-                echo "PATH - $PATH"
-                echo "BUILD_NUMBER - $env.BUILD_NUMBER"
-                echo "BUILD_ID - $env.BUILD_ID"
-                echo "JOB_NAME - $env.JOB_NAME"
-                echo "BUILD_TAG - $env.BUILD_TAG"
-                echo "BUILD_URL - $env.BUILD_URL"
-            }
-        }
         stage('Compile') {
             steps {
                 sh 'pwd'
                 dir(error-logger){
                     sh 'pwd'
-                    sh 'gradle build'
+                    sh 'gradle -b build.gradle build'
                 }
             }
         }
