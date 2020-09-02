@@ -16,7 +16,6 @@ pipeline {
                 dir('error-logger'){
                     sh "pwd"
                     sh "gradle clean build"
-                    cd path/to/test/reports
                     junit '**/build/test-results/test/TEST-*.xml'
                 }
             }
@@ -27,7 +26,5 @@ pipeline {
             echo 'build failed'
         }
     }
-
-
 
 }
