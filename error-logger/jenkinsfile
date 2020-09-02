@@ -11,12 +11,12 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh 'gradle tasks --all'
+                sh 'gradle build'
             }
         }
         stage('Unit Tests') {
             steps {
-                sh 'gradle error-logger/build.gradle classes'
+                sh 'gradle classes'
             }
             post {
                 always {
