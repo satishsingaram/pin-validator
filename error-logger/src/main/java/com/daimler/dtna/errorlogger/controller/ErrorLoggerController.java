@@ -12,7 +12,7 @@ public class ErrorLoggerController {
     @GetMapping("/health-check")
     @ResponseBody
     public String healthCheck(){
-        log.info("error-logger is up and running !!!");
+        log.infos("error-logger is up and running !!!");
         return "This is for test";
     }
 }
