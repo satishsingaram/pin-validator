@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 public class ErrorLoggerController {
 
-    // call me from pin validator
-    //post data method
-    insertIntoDB()
-
     @GetMapping("/health-check")
     @ResponseBody
     public String healthCheck(){
