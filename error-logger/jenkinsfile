@@ -15,7 +15,9 @@ pipeline {
                 echo "Printed pwd at rootgra"
                 dir('error-logger'){
                     sh "pwd"
-                    sh "gradle build"
+                    sh "gradle clean build"
+                    cd path/to/test/reports
+                    touch *.xml
                     junit '**/build/test-results/test/TEST-*.xml'
                 }
             }
