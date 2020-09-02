@@ -9,11 +9,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone repository') {
-            steps{
-                checkout scm
-            }
-        }
         stage('Checkout') {
             steps {
                 sh 'gradle --version'
@@ -29,7 +24,7 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh 'gradle build'
+                sh './gradlew build'
             }
         }
         stage('Unit Tests') {
