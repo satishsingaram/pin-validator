@@ -11,10 +11,11 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh 'pwd'
-                dir(error-logger){
-                    sh 'pwd'
-                    sh 'gradle -b build.gradle build'
+                sh "pwd"
+                echo "Printed pwd at rootgra"
+                dir('error-logger'){
+                    sh "pwd"
+                    sh "gradle -b build.gradle build"
                 }
             }
         }
