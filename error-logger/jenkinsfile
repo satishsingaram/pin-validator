@@ -8,26 +8,31 @@ pipeline {
         pollSCM('*/5 * * * *')
     }
 
-    stages {
-        stage('Compile') {
-            steps {
-                sh 'gradle tasks --all'
+    dir("error-logger") {
+        stages {
+            stage('Compile') {
+                steps {
+                    sh 'gradle tasks --all'
+                }
             }
-        }
-        stage('Unit Tests') {
-            steps {
-                sh 'gradle build'
-            }
-            post {
-                always {
-                    junit '**/build/test-results/test/TEST-*.xml'
+            stage('Unit Tests') {
+                steps {
+                    sh 'gradle build'
+                }
+                post {
+                    always {
+                        junit '**/build/test-results/test/TEST-*.xml'
+                    }
                 }
             }
         }
-    }
-    post {
-        failure {
-            echo 'build failed'
+        post {
+            failure {
+                echo 'build failed'
+            }
         }
+
     }
+
+
 }
