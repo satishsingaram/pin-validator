@@ -24,10 +24,10 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh "pwd"
+                sh 'pwd'
                 dir(error-logger){
-                    sh "pwd"
-                    gradle build
+                    sh 'pwd'
+                    sh 'gradle build'
                 }
             }
         }
