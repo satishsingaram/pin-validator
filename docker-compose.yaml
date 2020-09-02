@@ -1,0 +1,31 @@
+version: "3"
+services:
+
+  pin-validator-naming-server:
+    image: docker.io/pinvalidator/naming-service:latest
+    ports:
+      - "8761:8761"
+    networks:
+      - pin-validator-network
+
+  pin-validation-service:
+    image: docker.io/pinvalidator/pin-validation-service:latest
+    ports:
+      - "8080"
+    networks:
+      - pin-validator-network
+    depends_on:
+      - pin-validator-naming-server
+      - error-logger
+
+  error-logger:
+    image: docker.io/pinvalidator/error-logger:latest
+    ports:
+      - "8070"
+    networks:
+      - pin-validator-network
+    depends_on:
+      - pin-validator-naming-server
+
+networks:
+  pin-validator-network:
