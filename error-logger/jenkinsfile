@@ -9,6 +9,9 @@ pipeline {
     }
 
     stages {
+        stage('Clone repository') {
+            checkout scm
+        }
         stage('Checkout') {
             steps {
                 sh 'gradle --version'
