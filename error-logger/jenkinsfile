@@ -31,16 +31,6 @@ pipeline {
                 }
             }
         }
-        stage('Unit Tests') {
-            steps {
-                sh 'gradle classes'
-            }
-            post {
-                always {
-                    junit '**/build/test-results/test/TEST-*.xml'
-                }
-            }
-        }
     }
     post {
         failure {
