@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                gradlew('clean', 'classes')
+                gradle('clean', 'classes')
             }
         }
         stage('Unit Tests') {
             steps {
-                gradlew('test')
+                gradle('test')
             }
             post {
                 always {
