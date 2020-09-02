@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                gradle('clean', 'classes')
+                sh 'gradle clean'
             }
         }
         stage('Unit Tests') {
             steps {
-                gradle('test')
+                sh 'gradle build'
             }
             post {
                 always {
