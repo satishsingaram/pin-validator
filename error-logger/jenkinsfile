@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh 'gradle clean'
+                sh 'gradle tasks'
             }
         }
         stage('Unit Tests') {
