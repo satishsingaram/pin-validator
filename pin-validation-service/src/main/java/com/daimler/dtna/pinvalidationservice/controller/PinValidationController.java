@@ -11,13 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/validate")
 public class PinValidationController {
 
-    //if error orrcuured then call error logger:
-    @FeignClient("error-logger")
-    interface HelloClient {
-        @RequestMapping(value = "/", method = POST)
-        String insertIntoDB(errors);
-    }
-
     @GetMapping("/health-check")
     @ResponseBody
     public String healthCheck(){
