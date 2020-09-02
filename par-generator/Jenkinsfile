@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    tools {
+            gradle 'myGradle'
+    }
+
+    triggers {
+        pollSCM('*/5 * * * *')
+    }
+
+    stages {
+        stage('Compile') {
+            steps {
+                sh "pwd"
+                echo "Printed pwd at rootgra"
+                dir('par-generator'){
+                    sh "pwd"
+                    sh "gradle clean build"
+                    junit '**/build/test-results/test/TEST-*.xml'
+                }
+            }
+        }
+    }
+    post {
+        failure {
+            echo 'build failed'
+        }
+    }
+
+}
