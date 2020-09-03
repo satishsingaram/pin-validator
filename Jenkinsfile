@@ -18,9 +18,8 @@ pipeline {
         stage('build pin-validation-service') {
             steps {
                 dir('pin-validation-service'){
-                    sh 'docker version'
-                    echo "Build"
                     echo "PATH - $PATH"
+                    echo "Build"
                     sh "gradle clean build bootBuildImage "
                 }
             }
