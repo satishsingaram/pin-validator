@@ -13,7 +13,7 @@ pipeline {
             steps {
                 dir('pin-validation-service'){
                     echo "PATH - $PATH"
-                    sh "gradle clean build bootBuildImage "
+                    sh "gradle clean build"
                     junit '**/build/test-results/test/TEST-*.xml'
                 }
             }
