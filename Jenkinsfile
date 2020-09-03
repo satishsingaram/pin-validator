@@ -10,16 +10,15 @@ pipeline {
 
     stages {
         stage('build pin-validation-service') {
-                steps {
-                    dir('pin-validation-service'){
-                        sh "gradle clean build bootBuildImage "
-                    }
+            steps {
+                dir('pin-validation-service'){
+                    sh "gradle clean build bootBuildImage "
                 }
-                post {
-                    always {
-                        dir('pin-validation-service'){
-                            junit '**/build/test-results/test/TEST-*.xml'
-                        }
+            }
+            post {
+                always {
+                    dir('pin-validation-service'){
+                        junit '**/build/test-results/test/TEST-*.xml'
                     }
                 }
             }
