@@ -3,17 +3,21 @@ pipeline {
     tools {
         gradle 'myGradle'
     }
-    
+
     triggers {
         pollSCM('H * * * *')
     }
 
     stages {
         stage('build pin-validation-service') {
-            steps {
-                dir('pin-validation-service'){
-                    sh "gradle clean build"
-                    junit '**/build/test-results/test/TEST-*.xml'
+            dir('pin-validation-service'){
+                steps {
+                    sh "gradle clean build bootBuildImage "
+                }
+                post {
+                    always {
+                        junit '**/build/test-results/test/TEST-*.xml'
+                    }
                 }
             }
         }
@@ -36,7 +40,7 @@ pipeline {
     }
     post {
         failure {
-            echo 'build failed'
+            mail to: 'satish.singaram@daimler.com', subject: 'Build failed', body: 'Please fix!'
         }
     }
 
