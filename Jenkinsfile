@@ -13,15 +13,8 @@ pipeline {
             steps {
                 dir('pin-validation-service'){
                     echo "PATH - $PATH"
-                    echo "Build - $dockerHome"
                     sh "gradle clean build bootBuildImage "
-                }
-            }
-            post {
-                always {
-                    dir('pin-validation-service'){
-                        junit '**/build/test-results/test/TEST-*.xml'
-                    }
+                    junit '**/build/test-results/test/TEST-*.xml'
                 }
             }
         }
