@@ -4,11 +4,6 @@ pipeline {
             gradle 'myGradle'
             dockerTool 'myDocker'
     }
-    environment {
-    		dockerHome = tool name: 'myDocker', type: 'dockerTool'
-    		PATH = "$dockerHome/bin:$PATH"
-    }
-
     triggers {
         pollSCM('H * * * *')
     }
