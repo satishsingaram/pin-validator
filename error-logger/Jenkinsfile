@@ -11,11 +11,8 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                gradle('check')
-                gradle {
-                    tasks('clean')
-                    tasks('build')
-                    switches('--info')
+                gradle 'check'
+                gradle tasks 'clean'
                 }
             }
         }
