@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         gradle 'myGradle'
+        docker 'myDocker'
     }
 
     triggers {
