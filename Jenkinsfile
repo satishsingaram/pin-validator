@@ -6,8 +6,7 @@ pipeline {
     }
     environment {
     		dockerHome = tool name: 'myDocker', type: 'dockerTool'
-    		gradleHome = tool name: 'myGradle', type: 'gradle'
-    		PATH = "$dockerHome/bin:$gradleHome/bin:$PATH"
+    		PATH = "$dockerHome/bin:$PATH"
     }
 
     triggers {
@@ -19,7 +18,7 @@ pipeline {
             steps {
                 dir('pin-validation-service'){
                     echo "PATH - $PATH"
-                    echo "Build"
+                    echo "Build - $dockerHome"
                     sh "gradle clean build bootBuildImage "
                 }
             }
