@@ -1,8 +1,9 @@
 pipeline {
     agent any
-    tools {
-        gradle 'myGradle'
-        dockerTool 'myDocker'
+    environment {
+    		dockerHome = tool 'myDocker'
+    		gradleHome = tool 'myGradle'
+    		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
     }
 
     triggers {
